@@ -1,10 +1,12 @@
+using System;
 using static Task1.main;
 namespace Task1;
 
+
 public class Rational
 {
-    private int Numerator { get; }
-    private int Denominator { get; }
+    public int Numerator { get; }
+    public int Denominator { get; }
 
     private int WholePart { get; }
 
@@ -44,19 +46,6 @@ public class Rational
     public Rational(Rational rational) : this(rational.Numerator, rational.Denominator) { }
 
     public Rational(string s) : this(int.Parse(s.Split('/')[0]), (s.Split('/').Length > 1) ? int.Parse(s.Split('/')[1]) : 1) { }
-    //{
-    //    int numerator;
-    //    int denominator = 1;
-
-    //    string[] splitter = s.Split('/');
-
-    //    if (!int.TryParse(splitter[0], out numerator)) throw new Exception("Ñan't identify the numerator in the passed string!");
-
-    //    if ((splitter.Length > 1) && (!int.TryParse(splitter[1], out denominator)))
-    //        throw new Exception("Ñan't identify the denominator in the passed string!");
-
-    //    Init(numerator, denominator);
-    //}
 
     public override string ToString()
     {
@@ -65,6 +54,42 @@ public class Rational
         if (WholePart == 0) return $"{ProperPart.Numerator}/{ProperPart.Denominator}";
         return $"{WholePart} {ProperPart.Numerator}/{ProperPart.Denominator}";
     }
+
+
+    public static implicit operator Rational(int i) => new(i, 1);
+
+    public static Rational operator +(Rational a) => a;
+
+    public static Rational operator -(Rational a) => new Rational(-a.Numerator, a.Denominator);
+
+    public static Rational operator +(Rational a, Rational b)
+    => new Rational((a.Numerator * b.Denominator) + (b.Numerator * a.Denominator), a.Denominator * b.Denominator);
+
+    public static Rational operator -(Rational a, Rational b) => a + (-b);
+
+    public static Rational operator *(Rational a, Rational b)
+    => new Rational(a.Numerator * b.Numerator, a.Denominator * b.Denominator);
+
+    public static Rational operator /(Rational a, Rational b) => a * new Rational(b.Denominator, b.Numerator);
+
+    public static bool operator >(Rational a, Rational b)
+    => (a.Numerator * b.Denominator) > (b.Numerator * a.Denominator);
+
+    public static bool operator <(Rational a, Rational b)
+    => (a.Numerator * b.Denominator) < (b.Numerator * a.Denominator);
+
+    public static bool operator >=(Rational a, Rational b)
+    => (a.Numerator * b.Denominator) >= (b.Numerator * a.Denominator);
+
+    public static bool operator <=(Rational a, Rational b)
+    => (a.Numerator * b.Denominator) <= (b.Numerator * a.Denominator);
+
+    public static bool operator !=(Rational a, Rational b)
+    => (a.Numerator * b.Denominator) != (b.Numerator * a.Denominator);
+
+    public static bool operator ==(Rational a, Rational b)
+    => (a.Numerator * b.Denominator) == (b.Numerator * a.Denominator);
+
 
     private bool Equals(Rational other) => GetHashCode() == other.GetHashCode();
 
