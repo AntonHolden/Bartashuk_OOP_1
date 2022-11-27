@@ -1,0 +1,34 @@
+{
+  "tests": [
+    {
+      "name": "Tasks 1",
+      "setup": "",
+      "run": "export DOTNET_CLI_HOME=$(pwd); dotnet test Class2/Task1",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Tasks 2",
+      "setup": "",
+      "run": "export DOTNET_CLI_HOME=$(pwd); dotnet test Class2/Task2",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Task 3",
+      "setup": "",
+      "run": "export DOTNET_CLI_HOME=$(pwd); dotnet test Class2/Task3",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    }
+  ]
+}
