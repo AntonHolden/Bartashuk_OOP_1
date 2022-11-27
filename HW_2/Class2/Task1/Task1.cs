@@ -93,7 +93,7 @@ namespace Task1
             }
             catch (Exception e)
             {
-                Console.Write($"System.{e.GetType().Name}: {e.Message}\n");
+                Console.Write($"{e.GetType()}: {e.Message}\n");
             }
 
             try
@@ -102,7 +102,7 @@ namespace Task1
             }
             catch (Exception e)
             {
-                Console.Write($"System.{e.GetType().Name}: {e.Message}\n");
+                Console.Write($"{e.GetType()}: {e.Message}\n");
             }
 
             try
@@ -111,7 +111,7 @@ namespace Task1
             }
             catch (Exception e)
             {
-                Console.Write($"System.{e.GetType().Name}: {e.Message}\n"); ;
+                Console.Write($"{e.GetType()}: {e.Message}\n"); ;
             }
 
             Console.Write($"JSON value of 'age' has been set {ageProperty.SetValueCounter} time(s)\n");
