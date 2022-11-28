@@ -26,16 +26,15 @@ namespace Task1
             get => stringRepresentation;
             set
             {
-                stringRepresentation = value;
-                if (StringRepresentation != $"{Name}: {Value}")
+                if (value != $"{Name}: {Value}")
                 {
-                    if (!Regex.IsMatch(StringRepresentation, @"\w*: \w*")) throw new ArgumentException(
-                        $"Incorrect JSON property format: '{StringRepresentation}'");
+                    if (!Regex.IsMatch(value, @"\w*: \w*")) throw new ArgumentException(
+                        $"Incorrect JSON property format: '{value}'");
 
                     StringBuilder stringBuilder = new StringBuilder();
                     int newValue;
 
-                    foreach (var symb in StringRepresentation)
+                    foreach (var symb in value)
                     {
                         if (symb != ' ')
                         {
@@ -52,8 +51,8 @@ namespace Task1
                         @$"For input string: ""{stringBuilder}""");
 
                     Value = newValue;
-                    StringRepresentation = $"{Name}: {Value}";
                 }
+                stringRepresentation = $"{Name}: {Value}";
             }
         }
         public int SetValueCounter { get; private set; } = 0;

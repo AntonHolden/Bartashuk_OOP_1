@@ -54,7 +54,6 @@ public class Tests
             AssertNoFunctionsDeclared("Goose");
         });
     }
-
     private void AssertOut(string expected)
     {
         That(_stringWriter.ToString().TrimEnd(Environment.NewLine.ToCharArray()), Is.EqualTo(expected));
@@ -65,7 +64,7 @@ public class Tests
         var assembly = Assembly.LoadFrom("Task2.dll");
         var type = assembly.GetType($"Task2.{className}");
         That(type, Is.Not.Null);
-        That(type!.GetMembers(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance).Length,
-            Is.EqualTo(0));
+        That(type!.GetMembers(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance).Length,  
+            Is.EqualTo(1));
     }
 }

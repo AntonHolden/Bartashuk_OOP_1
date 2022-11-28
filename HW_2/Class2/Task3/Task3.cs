@@ -2,31 +2,36 @@
 {
     abstract class Creature
     {
+        private protected abstract string Message { get; }
+        internal void PrintMessage() => Console.Write($"{Message}\n");
     }
 
     class Human : Creature
     {
         internal string Greeting() => "Привет, я человек!";
+
+        private protected override string Message => Greeting();
     }
 
     class Dog : Creature
     {
         internal string Bark() => "Гав!";
+        private protected override string Message => Bark();
     }
 
     class Alien : Creature
     {
         internal string Command() => "Ты меня не видишь";
+        private protected override string Message => Command();
     }
 
     public class Task3
     {
-        internal static void PrintMessageFrom(Creature creature)
-        {
-            throw new NotImplementedException();
-        }
+        internal static void PrintMessageFrom(Creature creature) => creature.PrintMessage();
 
-        static List<Dog> FindDogs(List<Creature> creatures) => throw new NotImplementedException();
+        static List<Dog> FindDogs(List<Creature> creatures) => (from creature in creatures
+                                                                where creature is Dog
+                                                                select creature as Dog).ToList();
 
         public static void Main(string[] args)
         {
@@ -36,18 +41,18 @@
         internal static void RunTest()
         {
             var creatures = new List<Creature> { new Alien(), new Dog(), new Human(), new Dog() };
-            Console.WriteLine("Все сообщения:");
+            Console.Write("Все сообщения:\n");
 
             foreach (var creature in creatures)
             {
                 PrintMessageFrom(creature);
             }
 
-            Console.WriteLine();
-            Console.WriteLine("Сообщения только от собак:");
+            Console.Write('\n');
+            Console.Write("Сообщения только от собак:\n");
             foreach (var dog in FindDogs(creatures))
             {
-                Console.WriteLine(dog.Bark());
+                Console.Write($"{dog.Bark()}\n");
             }
         }
     }
