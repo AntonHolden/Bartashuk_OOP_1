@@ -29,7 +29,8 @@ namespace Task1
                 stringRepresentation = value;
                 if (StringRepresentation != $"{Name}: {Value}")
                 {
-                    if (!Regex.IsMatch(StringRepresentation, @"\w*: \w*")) throw new ArgumentException($"Incorrect JSON property format: '{StringRepresentation}'");
+                    if (!Regex.IsMatch(StringRepresentation, @"\w*: \w*")) throw new ArgumentException(
+                        $"Incorrect JSON property format: '{StringRepresentation}'");
 
                     StringBuilder stringBuilder = new StringBuilder();
                     int newValue;
@@ -47,7 +48,8 @@ namespace Task1
                             stringBuilder.Append(symb);
                         }
                     }
-                    if (!int.TryParse(stringBuilder.ToString(), out newValue)) throw new FormatException(@$"For input string: ""{stringBuilder}""");
+                    if (!int.TryParse(stringBuilder.ToString(), out newValue)) throw new FormatException(
+                        @$"For input string: ""{stringBuilder}""");
 
                     Value = newValue;
                     StringRepresentation = $"{Name}: {Value}";

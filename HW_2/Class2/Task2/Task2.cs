@@ -2,31 +2,34 @@
 {
     abstract class Animal
     {
-        internal abstract void Talk();
+        internal abstract string Name { get; }
+        internal abstract string Verb { get; }
+        internal abstract string Voice { get; }
+        internal void Talk()
+        {
+            Console.WriteLine($"{Name} {Verb} '{Voice}'");
+        }
     }
 
     class Cat : Animal
     {
-        internal override void Talk()
-        {
-            Console.WriteLine("Кошка мяучит 'мяу-мяу'");
-        }
+        internal override string Name => "Кошка";
+        internal override string Verb => "мяучит";
+        internal override string Voice => "мяу-мяу";
     }
 
     class Dog : Animal
     {
-        internal override void Talk()
-        {
-            Console.WriteLine("Собака гавкает 'гав-гав-гав'");
-        }
+        internal override string Name => "Собака";
+        internal override string Verb => "гавкает";
+        internal override string Voice => "гав-гав-гав";
     }
 
     class Goose : Animal
     {
-        internal override void Talk()
-        {
-            Console.WriteLine("Гусь гогочет 'га-га-га'");
-        }
+        internal override string Name => "Гусь";
+        internal override string Verb => "гогочет";
+        internal override string Voice => "га-га-га";
     }
 
     public class Task2
